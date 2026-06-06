@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+dist
+coverage
+.env
+*.log
+submission/code
+submission/panopticon-demo.mp4
+data/vector-index.json

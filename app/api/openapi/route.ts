@@ -1,0 +1,54 @@
+const openApi = {
+  openapi: "3.1.0",
+  info: {
+    title: "Project Panopticon API",
+    version: "1.0.0",
+    description: "Streaming adversarial multi-agent customer resolution endpoint."
+  },
+  paths: {
+    "/api/chat": {
+      post: {
+        summary: "Run the Panopticon war room",
+        description: "Accepts a customer message and streams Server-Sent Events for logs, drafts, guardrail review, and final response.",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["userId", "tier", "message", "history"],
+                properties: {
+                  userId: { type: "string", example: "acme-standard" },
+                  tier: { type: "string", enum: ["Free", "Standard", "Enterprise"], example: "Standard" },
+                  message: {
+                    type: "string",
+                    example: "Your API crashed again and my payment gateway is down. I'm taking my business elsewhere!"
+                  },
+                  history: { type: "array", items: { type: "string" }, maxItems: 5 }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          "200": {
+            description: "SSE stream of war-room events",
+            content: {
+              "text/event-stream": {
+                schema: {
+                  type: "string",
+                  example: "event: log\\ndata: {...}\\n\\nevent: final\\ndata: {...}\\n\\n"
+                }
+              }
+            }
+          },
+          "400": { description: "Validation error" }
+        }
+      }
+    }
+  }
+};
+
+export async function GET(): Promise<Response> {
+  return Response.json(openApi);
+}

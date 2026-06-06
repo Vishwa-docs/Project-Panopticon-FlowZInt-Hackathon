@@ -1,0 +1,29 @@
+{
+  "acme-standard": {
+    "userId": "acme-standard",
+    "companyName": "Acme Commerce",
+    "tier": "Standard",
+    "monthlySpendUsd": 8400,
+    "contractRenewalDays": 41,
+    "criticalIntegrations": ["Payments API", "Invoice Sync"],
+    "accountOwner": "Maya Chen"
+  },
+  "northwind-free": {
+    "userId": "northwind-free",
+    "companyName": "Northwind Labs",
+    "tier": "Free",
+    "monthlySpendUsd": 0,
+    "contractRenewalDays": 320,
+    "criticalIntegrations": ["Sandbox API"],
+    "accountOwner": "Community Support"
+  },
+  "globex-enterprise": {
+    "userId": "globex-enterprise",
+    "companyName": "Globex Financial",
+    "tier": "Enterprise",
+    "monthlySpendUsd": 54000,
+    "contractRenewalDays": 88,
+    "criticalIntegrations": ["Payments API", "Audit Logs", "Custom Rate Limits"],
+    "accountOwner": "Jon Bell"
+  }
+}

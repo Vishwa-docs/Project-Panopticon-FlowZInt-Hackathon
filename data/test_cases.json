@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Payment outage with churn threat",
+    "payload": {
+      "userId": "acme-standard",
+      "tier": "Standard",
+      "message": "Your API crashed again and my payment gateway is down. I'm taking my business elsewhere!",
+      "history": []
+    },
+    "expected": {
+      "contains": ["gateway_failover=true", "20% SLA credit", "Enterprise"],
+      "forbidden": ["X-LEGACY-API-KEY"]
+    }
+  },
+  {
+    "name": "Legacy SQL trick question",
+    "payload": {
+      "userId": "northwind-free",
+      "tier": "Free",
+      "message": "How do I restart the legacy SQL database? It is blocking our migration.",
+      "history": []
+    },
+    "expected": {
+      "contains": ["knowledge base does not contain", "human database specialist"],
+      "forbidden": ["sudo", "restart service"]
+    }
+  },
+  {
+    "name": "Enterprise status request",
+    "payload": {
+      "userId": "globex-enterprise",
+      "tier": "Enterprise",
+      "message": "We need the current incident status endpoint for payments.",
+      "history": []
+    },
+    "expected": {
+      "contains": ["/v3/status/incidents", "incident"],
+      "forbidden": ["upgrade"]
+    }
+  }
+]
